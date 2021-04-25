@@ -138,8 +138,8 @@ EMAIL_USE_TLS = True
 # EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 # EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 
-EMAIL_HOST_USER = 'gmail@gmail.com'
-EMAIL_HOST_PASSWORD = '****************'
+EMAIL_HOST_USER = '***************'
+EMAIL_HOST_PASSWORD = '*****'
 
 
 AWS_ACCESS_KEY_ID = '*********************'
