@@ -1,11 +1,11 @@
-from django.shortcuts import render,redirect,get_object_or_404
-from .models import Post
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Post, Like, Profile
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
-from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
+from django.views.generic import ListView, DetailView, CreateView,UpdateView,DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
 # @login_required
@@ -21,9 +21,32 @@ class PostListView(ListView):
     ordering = ['-date_created']
 
 
-def detail(request,pk):
+def like_post(request):
+    user = request.user
+    if request.method == 'POST':
+        post_id = request.POST.get('post_id')
+        post_obj = Post.objects.get(id=post_id)
+
+        if user in post_obj.liked.all():
+            post_obj.liked.remove(user)
+        else:
+            post_obj.liked.add(user)
+        like, created = Like.objects.get_or_create(user=user, post_id=post_id)
+
+        if not created:
+            if like.value == 'Like':
+                like.value = 'Unlike'
+            else:
+                like.value = 'Like'
+
+        like.save()
+
+    return redirect('index')
+
+
+def detail(request, pk):
     object = Post.objects.get(id=pk)
-    return render(request,'detail.html',{'object':object})
+    return render(request, 'detail.html', {'object': object})
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -75,7 +98,7 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request,f"Account created for {username}!")
-            return redirect('index')
+            return redirect('login')
     else:
         form = UserRegisterForm()
     return render(request,'register.html',{'form':form})
