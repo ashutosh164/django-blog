@@ -1,7 +1,6 @@
 .idea
 image
 profile
-db.sqlite3
 manage.py
 default.jpg
 migrations

@@ -5,11 +5,14 @@ from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 <<<<<<< HEAD
+<<<<<<< HEAD
 from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.conf import settings
 from django.core.mail import send_mail
 =======
+=======
+>>>>>>> test
 from django.views.generic import ListView, DetailView, CreateView,UpdateView,DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
@@ -106,6 +109,7 @@ def register(request):
             username = form.cleaned_data.get('username')
             messages.success(request,f"Account created for {username}!")
 <<<<<<< HEAD
+<<<<<<< HEAD
             subject = 'welcome world Blog app'
             message = f'Hi {user.username}, thanks you for registering'
             email_from = settings.EMAIL_HOST_USER
@@ -115,6 +119,9 @@ def register(request):
 =======
             return redirect('login')
 >>>>>>> blog
+=======
+            return redirect('login')
+>>>>>>> test
     else:
         form = UserRegisterForm()
     return render(request,'register.html',{'form':form})

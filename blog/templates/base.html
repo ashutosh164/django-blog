@@ -9,7 +9,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">Blogger</a>
+  <a class="navbar-brand" href="#">Blog</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -22,6 +22,7 @@
     </ul>
     <div class="navbar-nav">
       {% if user.is_authenticated %}
+        <span class="nav-item active nav-link">Hello, {{ request.user }} </span>
          <a class="nav-item active nav-link" href="{% url 'profile' %}">Profile</a>
          <a class="nav-item active nav-link" href="{% url 'create' %}">Create</a>
          <a class="nav-item active nav-link" href="{% url 'logout' %}">Logout</a>
