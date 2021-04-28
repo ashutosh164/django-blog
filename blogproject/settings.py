@@ -150,7 +150,7 @@ EMAIL_USE_TLS = True
 # EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 # EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 
-<<<<<<< HEAD
+
 EMAIL_HOST_USER = '***************'
 EMAIL_HOST_PASSWORD = '*****'
 
@@ -164,9 +164,7 @@ AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-=======
-EMAIL_HOST_USER = 'jilu7437@gmail.com'
-EMAIL_HOST_PASSWORD = '7684926705'
+
 
 #
 # AWS_ACCESS_KEY_ID = '*********************'
@@ -178,7 +176,7 @@ EMAIL_HOST_PASSWORD = '7684926705'
 # AWS_DEFAULT_ACL = None
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
->>>>>>> blog
+
 
 
 
