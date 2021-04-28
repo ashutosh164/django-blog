@@ -23,6 +23,7 @@ class Post(models.Model):
     def num_like(self):
         return self.liked.all().count()
 
+    # RESIZE THE IMAGE
     def save(self, *args, **kwargs):
         super().save( *args, **kwargs)
 
