@@ -76,10 +76,22 @@ WSGI_APPLICATION = 'blogproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'blog',
+        'USER': 'root',
+        'PASSWORD': 'ashu2468@$^*',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 
@@ -138,6 +150,7 @@ EMAIL_USE_TLS = True
 # EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 # EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 
+<<<<<<< HEAD
 EMAIL_HOST_USER = '***************'
 EMAIL_HOST_PASSWORD = '*****'
 
@@ -151,6 +164,21 @@ AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+=======
+EMAIL_HOST_USER = 'jilu7437@gmail.com'
+EMAIL_HOST_PASSWORD = '7684926705'
+
+#
+# AWS_ACCESS_KEY_ID = '*********************'
+# AWS_SECRET_ACCESS_KEY = '************************'
+# AWS_STORAGE_BUCKET_NAME = '***********'
+#
+#
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_DEFAULT_ACL = None
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+>>>>>>> blog
 
 
 

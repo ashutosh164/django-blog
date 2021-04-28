@@ -10,6 +10,7 @@ class Post(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to='image',null=True,blank=True)
     author = models.ForeignKey(User,on_delete=models.CASCADE)
+    liked = models.ManyToManyField(User, default=None,blank=True,related_name='liked')
 
     def __str__(self):
         return self.title
@@ -18,14 +19,18 @@ class Post(models.Model):
         # return reverse('detail',kwargs={'pk': self.pk})
         return reverse('index')
 
-    # def save(self, *args, **kwargs):
-    #     super().save( *args, **kwargs)
-    #
-    #     img = Image.open(self.image.path)
-    #     if img.height > 300 or img.width > 300:
-    #         output_size = (300, 300)
-    #         img.thumbnail(output_size)
-    #         img.save(self.image.path)
+    @property
+    def num_like(self):
+        return self.liked.all().count()
+
+    def save(self, *args, **kwargs):
+        super().save( *args, **kwargs)
+
+        img = Image.open(self.image.path)
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
 
 
 class Profile(models.Model):
@@ -37,11 +42,26 @@ class Profile(models.Model):
         return f"{self.user.username} "
 
     # RESIZE THE IMAGE
-    # def save(self,*args,**kwargs):
-    #     super(Profile, self).save(*args, **kwargs)
-    #
-    #     img = Image.open(self.image.path)
-    #     if img.height > 300 or img.width > 300:
-    #         output_size = (300,300)
-    #         img.thumbnail(output_size)
-    #         img.save(self.image.path)
+    def save(self,*args,**kwargs):
+        super(Profile, self).save(*args, **kwargs)
+
+        img = Image.open(self.image.path)
+        if img.height > 300 or img.width > 300:
+            output_size = (300,300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
+
+
+LIKE_CHOICES = (
+    ('Like','Like'),
+    ('Unlike','Unlike'),
+)
+
+
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post,on_delete=models.CASCADE)
+    value = models.CharField(choices=LIKE_CHOICES,default='Like', max_length=10)
+
+    def __str__(self):
+        return str(self.post)
