@@ -16,7 +16,7 @@
            <div>
                 <form action="{% url 'like' %}" method="POST">
                     {% csrf_token %}
-<<<<<<< HEAD
+
                     <input type="hidden" name="post_id" value="{{ post.id }}">
                     {% if user not in post.liked.all %}
                         <button class="btn btn-primary" type="submit">Like</button>
@@ -24,7 +24,7 @@
                         <button class="btn btn-danger" type="submit">Unlike</button>
                     {% endif %}
                     <strong>{{ post.liked.all.count }} likes</strong>
-=======
+
                     {% if user.is_authenticated %}
                         <input type="hidden" name="post_id" value="{{ post.id }}">
                         {% if user not in post.liked.all %}
@@ -36,7 +36,7 @@
                     {% else %}
                         <strong>{{ post.liked.all.count }} likes</strong>
                     {% endif %}
->>>>>>> test
+
                 </form>
            </div>
 
@@ -44,17 +44,6 @@
        </div>
     <br>
 
-<!--        <article class="media content-section">-->
-<!--            <img src="{{ post.image.url }}" alt="image not found">-->
-<!--            <div class="media-body">-->
-<!--                <div class="article-metadata">-->
-<!--                    <a href="{{ post.author }}"></a>-->
-<!--                    <small class="text-muted">{{ post.date_created|date:"F d, Y" }}</small>-->
-<!--                </div>-->
-<!--                <h2><a href="">{{ post.title }}</a></h2>-->
-<!--                <p class="article-content">{{ post.content }}</p>-->
-<!--            </div>-->
-<!--        </article>-->
     {% endfor %}
 </div>
 
