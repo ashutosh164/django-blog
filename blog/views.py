@@ -1,17 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Post, Like, Profile
+from .models import Post, Like, Profile, Comment
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView,UpdateView,DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-
-
-# @login_required
-# def index(request):
-#     post = Post.objects.all()
-#     return render(request,'index.html',{'post':post})
 
 
 class PostListView(ListView):
@@ -133,3 +127,14 @@ def profile(request):
 
     return render(request,'profile.html',context)
 
+
+@login_required
+def post_comment(request):
+    if request.method == 'POST':
+        user = request.user
+        post_id = request.POST.get('post_id')
+        post = Post.objects.get(id=post_id)
+        comment = Comment(user=user, post=post)
+        comment.save()
+        messages.success(request, 'you comment has been posted')
+    return redirect('index')
