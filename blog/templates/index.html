@@ -14,17 +14,8 @@
 
 
            <div>
-                <form action="{% url 'like' %}" method="POST">
+              <form action="{% url 'like' %}" method="POST">
                     {% csrf_token %}
-
-                    <input type="hidden" name="post_id" value="{{ post.id }}">
-                    {% if user not in post.liked.all %}
-                        <button class="btn btn-primary" type="submit">Like</button>
-                    {% else %}
-                        <button class="btn btn-danger" type="submit">Unlike</button>
-                    {% endif %}
-                    <strong>{{ post.liked.all.count }} likes</strong>
-
                     {% if user.is_authenticated %}
                         <input type="hidden" name="post_id" value="{{ post.id }}">
                         {% if user not in post.liked.all %}
@@ -36,7 +27,6 @@
                     {% else %}
                         <strong>{{ post.liked.all.count }} likes</strong>
                     {% endif %}
-
                 </form>
            </div>
 
