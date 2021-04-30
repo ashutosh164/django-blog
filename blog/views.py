@@ -46,7 +46,14 @@ def like_post(request):
 
 def detail(request, pk):
     object = Post.objects.get(id=pk)
-    return render(request, 'detail.html', {'object': object})
+    posts = get_object_or_404(Post, id=pk)
+    post_liked = posts.liked.all()
+
+    context = {
+        'object': object,
+        'post_liked':post_liked
+    }
+    return render(request, 'detail.html', context)
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):

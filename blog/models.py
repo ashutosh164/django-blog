@@ -65,4 +65,4 @@ class Like(models.Model):
     value = models.CharField(choices=LIKE_CHOICES,default='Like', max_length=10)
 
     def __str__(self):
-        return str(self.post)
+        return f'{self.user}--{self.post}'
