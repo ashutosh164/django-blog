@@ -24,7 +24,10 @@ class ProfileUpdateForm(forms.ModelForm):
         fields = ['image','bio']
 
 
-
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['body']
 
 
 

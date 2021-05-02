@@ -26,6 +26,9 @@ class Post(models.Model):
     def num_comments(self):
         return self.comment_set.all().count()
 
+    def all_comments(self):
+        pass
+
     # RESIZE THE IMAGE
 
     def save(self, *args, **kwargs):
@@ -80,5 +83,5 @@ class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.user}--{self.post}'
+        return f'{self.user}--{self.post}--{self.body}'
 

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Like, Profile, Comment
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
@@ -46,10 +46,14 @@ def detail(request, pk):
     object = Post.objects.get(id=pk)
     posts = get_object_or_404(Post, id=pk)
     post_liked = posts.liked.all()
+    post = Post.objects.all()
+    # post_comment = comment.post.all()
 
     context = {
         'object': object,
-        'post_liked':post_liked
+        'post_liked':post_liked,
+        'post':post
+        # 'post_comment':post_comment,
     }
     return render(request, 'detail.html', context)
 
@@ -144,7 +148,9 @@ def post_comment(request):
         user = request.user
         post_id = request.POST.get('post_id')
         post = Post.objects.get(id=post_id)
-        comment = Comment(user=user, post=post)
+        body = request.POST.get('body')
+        comment = Comment(user=user, post=post, body=body)
         comment.save()
         messages.success(request, 'you comment has been posted')
-    return redirect('index')
+        return redirect('index')
+
