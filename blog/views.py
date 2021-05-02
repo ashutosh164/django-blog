@@ -42,14 +42,12 @@ def detail(request, pk):
     object = Post.objects.get(id=pk)
     posts = get_object_or_404(Post, id=pk)
     post_liked = posts.liked.all()
-    post = Post.objects.all()
-    # post_comment = comment.post.all()
+    comments = posts.comments.filter()
 
     context = {
         'object': object,
         'post_liked':post_liked,
-        'post':post
-        # 'post_comment':post_comment,
+        'comments':comments
     }
     return render(request, 'detail.html', context)
 
