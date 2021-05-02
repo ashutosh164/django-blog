@@ -10,6 +10,11 @@
            <div class="card-body">
                <h2 class="card-text">{{ object.title }}</h2>
                <p class="card-text">{{ object.content }}</p>
+               <p class="card-text">Total like gets : {{ object.liked.all.count }}</p>
+               <h3>Who liked my post: </h3>
+               {% for i in post_liked %}
+                    <p>{{ i.username }}</p>
+               {% endfor %}
 
                {% if object.author == user %}
                     <a class="btn btn-info" href="{% url 'update' object.pk %}">Update</a>
