@@ -5,3 +5,4 @@ manage.py
 default.jpg
 migrations
 *.cpython
+*.__pycache__
