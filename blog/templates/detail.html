@@ -32,12 +32,12 @@
 
                    <div>
                        <h3>Who comment my post:</h3>
-                       {% for i in post %}
-                            {% if i.comment_set.all %}
-                                <h4>{{ i.username }}</h4>
-                                <p>{{ i.body }}</p>
-                            {% endif %}
+                       {% for i in object.comments.all %}
+                            <p>{{ i.user }}---{{ i.body }}</p>
+                       {% empty %}
+                            <p>There is no comments</p>
                        {% endfor %}
+
                    </div>
 
                </div>
