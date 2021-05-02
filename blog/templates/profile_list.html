@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block body %}
+{% for item in qs %}
+<div class="ui segment">
+    <div class="ui grid">
+        <div class="row">
+            <div class="three width column">
+                <img style="height:100px" class="rounded-circle" src="{{ item.image.url }}" alt="Image not found">
+            </div>
+            <div class="thirteen wide column">
+                <h3>Name: {{ item.first_name }} {{ item.last_name }}</h3>
+                <p>User: {{ item.user }}</p>
+                <p>Email: {{ item.user.email }}</p>
+                <p>Country: {{ item.country }}</p>
+                <p>Mob: {{ item.mob }}</p>
+                <p>Qualification: {{ item.qul }}</p>
+                <hr>
+            </div>&nbsp;&nbsp;&nbsp;&nbsp;
+
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+
+
+
+
+<!--<div class="container">-->
+<!--    <div class="column">-->
+<!--        {% for item in qs %}-->
+<!--            <img style="height:100px" class="rounded-circle" src="{{ item.image.url }}" alt="Image not found">-->
+<!--            <h3>{{ item.user }}</h3>-->
+<!--            <p>{{ item.bio }}</p>-->
+<!--        {% endfor %}-->
+
+<!--    </div>-->
+<!--</div>-->
+
+
+
+{% endblock %}
