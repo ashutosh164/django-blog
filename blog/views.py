@@ -152,3 +152,12 @@ def post_comment(request):
         messages.success(request, 'you comment has been posted')
         return redirect('index')
 
+
+@login_required
+def profile_list_view(request):
+    user = request.user
+    qs = Profile.objects.all().exclude(user=user)
+
+    context = {'qs':qs}
+
+    return render(request,'profile_list.html',context)

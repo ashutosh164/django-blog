@@ -18,13 +18,14 @@ from django.urls import path
 from .views import register,profile,PostListView,detail,PostCreateView,\
     PostUpdateView,\
     PostDelete,\
-    like_post, post_comment
+    like_post, post_comment, profile_list_view
 
 from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
     path('',PostListView.as_view(),name='index'),
+    path('profile_list/',profile_list_view,name='profiles_list'),
     path('like/',like_post,name='like'),
     path('comment/', post_comment, name='comment'),
     path('detail/<int:pk>/',detail,name='detail'),
