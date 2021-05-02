@@ -6,15 +6,14 @@
        <div class="card" style="width: 30rem;">
            <div class="row">&nbsp;&nbsp;&nbsp;&nbsp;
                <div>
-                   <img style="height: 100px; width: 90px;" class="rounded-circle account-img" src="{{ user.profile.image.url }}" alt="image not found ">
+                   <img style="height: 100px; width: 90px;" class="rounded-circle" src="{{ post.author.profile.image.url }}" alt="image not found ">
                </div>&nbsp;
                <div>
                    <h3 class="card-text">{{ post.author }}</h3>
                    <p>{{ post.date_created|date:"F d, Y" }}</p>
                </div>
-
-
            </div>
+
                 <img src="{{ post.image.url }}" class="card-img-top" alt="image not found">
                <div class="card-body">
                    <h2><a class="card-text" href="{% url 'detail' post.id %}">{{ post.title }}</a></h2>
@@ -54,9 +53,7 @@
                    {% endif %}
                </div>
 
-
            </div>
-
 
        </div>
     <br>
