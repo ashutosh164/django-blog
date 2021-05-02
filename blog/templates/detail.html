@@ -2,24 +2,47 @@
 {% block body %}
 
 <div class="container mt-5">
-    <img class="rounded-circle article-ima" src="{{ object.author.profile.image.url}}" alt="image not found">
+    <div class="row">&nbsp;&nbsp;&nbsp;&nbsp;
+        <div>
+            <img class="rounded-circle article-ima" src="{{ object.author.profile.image.url}}" alt="image not found">               </div>&nbsp;
+            <div>
+                <h3 class="card-text">{{ object.author }}</h3>
+                <p>{{ object.date_created|date:"F d, Y" }}</p>
+                <h4 class="card-text">Total like gets : {{ object.liked.all.count }}</h4>
+                <h4 class="card-text">Total Comment gets : {{ object.num_comments }}</h4>
+            </div>
+        </div>
+
        <div class="card" style="width: 30rem;">
-           <h3 class="card-text">{{ object.author }}</h3>
-           <p>{{ object.date_created|date:"F d, Y" }}</p>
            <img src="{{ object.image.url }}" class="card-img-top" alt="image not found">
            <div class="card-body">
                <h2 class="card-text">{{ object.title }}</h2>
                <p class="card-text">{{ object.content }}</p>
-               <p class="card-text">Total like gets : {{ object.liked.all.count }}</p>
-               <h3>Who liked my post: </h3>
-               {% for i in post_liked %}
-                    <p>{{ i.username }}</p>
-               {% endfor %}
-
                {% if object.author == user %}
                     <a class="btn btn-info" href="{% url 'update' object.pk %}">Update</a>
                     <a class="btn btn-danger" href="{% url 'delete' object.pk %}">Delete</a>
                {% endif %}
+               <div class="row">
+                   <div>
+                       <h3>Who liked my post: </h3>
+                       {% for i in post_liked %}
+                            <p>{{ i.username }}</p>
+                       {% endfor %}
+                   </div>
+
+                   <div>
+                       <h3>Who comment my post:</h3>
+                       {% for i in post %}
+                            {% if i.comment_set.all %}
+                                <h4>{{ i.username }}</h4>
+                                <p>{{ i.body }}</p>
+                            {% endif %}
+                       {% endfor %}
+                   </div>
+
+               </div>
+
+
 
            </div>
        </div>
