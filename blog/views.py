@@ -6,6 +6,8 @@ from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, CommentF
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView,UpdateView,DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.conf import settings
+from django.core.mail import send_mail
 
 
 class PostListView(ListView):
@@ -98,9 +100,14 @@ def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
             username = form.cleaned_data.get('username')
             messages.success(request,f"Account created for {username}!")
+            subject = 'welcome to my social world'
+            message = f'Hi {user.username}, thanks you for registering'
+            email_from = settings.EMAIL_HOST_USER
+            recipent_list = [user.email, ]
+            send_mail(subject, message, email_from, recipent_list)
             return redirect('login')
     else:
         form = UserRegisterForm()
