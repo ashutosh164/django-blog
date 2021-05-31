@@ -8,6 +8,8 @@ from django.views.generic import ListView, DetailView, CreateView,UpdateView,Del
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.conf import settings
 from django.core.mail import send_mail
+from django.views import View
+from django.db.models import Q
 
 
 class PostListView(ListView):
@@ -158,3 +160,18 @@ def profile_list_view(request):
     context = {'qs':qs}
 
     return render(request,'profile_list.html',context)
+
+
+class SearchUser(View):
+    def get(self, request, *args, **kwargs):
+        query = self.request.GET.get('query')
+        profile = Profile.objects.filter(Q(user__username=query))
+
+        context = {'profile':profile}
+
+        return render(request, 'search.html', context)
+
+
+
+
+
