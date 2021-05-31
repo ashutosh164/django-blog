@@ -109,11 +109,8 @@ def register(request):
             user = form.save()
             username = form.cleaned_data.get('username')
             messages.success(request,f"Account created for {username}!")
-<<<<<<< HEAD
             subject = 'welcome world Blog app'
-=======
             subject = 'welcome to my social world'
->>>>>>> test
             message = f'Hi {user.username}, thanks you for registering'
             email_from = settings.EMAIL_HOST_USER
             recipent_list = [user.email, ]
