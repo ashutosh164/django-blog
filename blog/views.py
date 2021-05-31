@@ -10,6 +10,10 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.views.generic import ListView, DetailView, CreateView,UpdateView,DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.conf import settings
+from django.core.mail import send_mail
+from django.views import View
+from django.db.models import Q
 
 
 class PostListView(ListView):
@@ -105,7 +109,11 @@ def register(request):
             user = form.save()
             username = form.cleaned_data.get('username')
             messages.success(request,f"Account created for {username}!")
+<<<<<<< HEAD
             subject = 'welcome world Blog app'
+=======
+            subject = 'welcome to my social world'
+>>>>>>> test
             message = f'Hi {user.username}, thanks you for registering'
             email_from = settings.EMAIL_HOST_USER
             recipent_list = [user.email, ]
@@ -161,3 +169,18 @@ def profile_list_view(request):
     context = {'qs':qs}
 
     return render(request,'profile_list.html',context)
+
+
+class SearchUser(View):
+    def get(self, request, *args, **kwargs):
+        query = self.request.GET.get('query')
+        profile = Profile.objects.filter(Q(user__username=query))
+
+        context = {'profile':profile}
+
+        return render(request, 'search.html', context)
+
+
+
+
+
