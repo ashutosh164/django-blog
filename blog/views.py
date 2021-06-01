@@ -172,6 +172,10 @@ class SearchUser(View):
         return render(request, 'search.html', context)
 
 
+def profile_detail(request, pk):
+    profile = get_object_or_404(Profile, id=pk)
+    return render(request, 'profile_detail.html', {'profile':profile})
+
 
 
 
