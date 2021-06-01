@@ -38,7 +38,7 @@ urlpatterns = [
     path('login/',auth_views.LoginView.as_view(template_name='login.html'),name='login'),
     path('logout/',auth_views.LogoutView.as_view(template_name='logout.html'),name='logout'),
     path('search/',SearchUser.as_view(), name='search'),
-    path('profile_detail/<int:pk>/', profile_detail, name='profile_detail'),
+    path('search_profile/<int:pk>/', profile_detail, name='search_profile'),
 
     path('password-reset/',
          auth_views.PasswordResetView.as_view(template_name='password_reset.html'),
