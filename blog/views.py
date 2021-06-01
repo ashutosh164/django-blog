@@ -130,10 +130,12 @@ def profile(request):
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
+        post_count = Post.objects.filter(author=request.user).count()
 
     context = {
         'u_form':u_form,
         'p_form':p_form,
+        'post_count':post_count
     }
 
     return render(request,'profile.html',context)
@@ -167,7 +169,7 @@ class SearchUser(View):
         query = self.request.GET.get('query')
         profile = Profile.objects.filter(Q(user__username=query))
 
-        context = {'profile':profile}
+        context = {'profile': profile}
 
         return render(request, 'search.html', context)
 
