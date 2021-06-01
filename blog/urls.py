@@ -18,7 +18,8 @@ from django.urls import path
 from .views import register,profile,PostListView,detail,PostCreateView,\
     PostUpdateView,\
     PostDelete,\
-    like_post, post_comment, profile_list_view, SearchUser
+    like_post, post_comment, profile_list_view,\
+    SearchUser, profile_detail
 
 from django.contrib.auth import views as auth_views
 
@@ -37,6 +38,7 @@ urlpatterns = [
     path('login/',auth_views.LoginView.as_view(template_name='login.html'),name='login'),
     path('logout/',auth_views.LogoutView.as_view(template_name='logout.html'),name='logout'),
     path('search/',SearchUser.as_view(), name='search'),
+    path('profile_detail/<int:pk>/', profile_detail, name='profile_detail'),
 
     path('password-reset/',
          auth_views.PasswordResetView.as_view(template_name='password_reset.html'),
