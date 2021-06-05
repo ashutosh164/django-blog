@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Like, Profile, Comment
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, CommentForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView,UpdateView,DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin

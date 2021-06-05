@@ -24,10 +24,7 @@ class ProfileUpdateForm(forms.ModelForm):
         fields = ['image','bio','first_name','last_name','country','qul','mob']
 
 
-class CommentForm(forms.ModelForm):
-    class Meta:
-        model = Comment
-        fields = ['body']
+
 
 
 
