@@ -8,9 +8,9 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(upload_to='image',null=True,blank=True)
-    author = models.ForeignKey(User,on_delete=models.CASCADE)
-    liked = models.ManyToManyField(User, default=None,blank=True,related_name='liked')
+    image = models.ImageField(upload_to='image', null=True, blank=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    liked = models.ManyToManyField(User, default=None, blank=True, related_name='liked')
 
     def __str__(self):
         return self.title
@@ -39,14 +39,14 @@ class Post(models.Model):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
-    image = models.ImageField(default='default.jpg',upload_to='profile')
-    bio = models.CharField(max_length=200,null=True,blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(default='default.jpg', upload_to='profile')
+    bio = models.CharField(max_length=200,null=True, blank=True)
     first_name = models.CharField(max_length=200, blank=True)
     last_name = models.CharField(max_length=200, blank=True)
-    country = models.CharField(max_length=200,blank=True)
-    qul = models.CharField(max_length=200,blank=True)
-    mob = models.CharField(max_length=10,blank=True)
+    country = models.CharField(max_length=200, blank=True)
+    qul = models.CharField(max_length=200, blank=True)
+    mob = models.CharField(max_length=10, blank=True)
 
     def __str__(self):
         return f"{self.user.username} "
@@ -63,23 +63,23 @@ class Profile(models.Model):
 
 
 LIKE_CHOICES = (
-    ('Like','Like'),
-    ('Unlike','Unlike'),
+    ('Like', 'Like'),
+    ('Unlike', 'Unlike'),
 )
 
 
 class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post,on_delete=models.CASCADE)
-    value = models.CharField(choices=LIKE_CHOICES,default='Like', max_length=10)
+    value = models.CharField(choices=LIKE_CHOICES, default='Like', max_length=10)
 
     def __str__(self):
         return f'{self.user}--{self.post}'
 
 
 class Comment(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
-    post = models.ForeignKey(Post,on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
     body = models.TextField(max_length=300)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
