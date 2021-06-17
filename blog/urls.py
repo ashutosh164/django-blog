@@ -19,7 +19,7 @@ from .views import register,profile,PostListView,detail,PostCreateView,\
     PostUpdateView,\
     PostDelete,\
     like_post, post_comment, profile_list_view,\
-    SearchUser, profile_detail
+    SearchUser, profile_detail, user_post
 
 from django.contrib.auth import views as auth_views
 
@@ -35,6 +35,7 @@ urlpatterns = [
     path('create/',PostCreateView.as_view(),name='create'),
     path('register/',register,name='register'),
     path('profile/',profile,name='profile'),
+    path('user_post/',user_post,name='user_post'),
     path('login/',auth_views.LoginView.as_view(template_name='login.html'),name='login'),
     path('logout/',auth_views.LogoutView.as_view(template_name='logout.html'),name='logout'),
     path('search/',SearchUser.as_view(), name='search'),
