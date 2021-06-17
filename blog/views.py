@@ -181,5 +181,11 @@ def profile_detail(request, pk):
     return render(request, 'profile_detail.html', {'profile':profile})
 
 
+def user_post(request):
+    post = Post.objects.filter(author=request.user)
 
+    context = {
+        'post': post
+    }
+    return render(request, 'user_post.html', context)
 
