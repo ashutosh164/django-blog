@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Like, Profile, Comment
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, CommentForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, CommentForm, SharedForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView,UpdateView,DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -10,13 +10,14 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.views import View
 from django.db.models import Q
+from django.utils import timezone
 
 
 class PostListView(ListView):
     model = Post
     template_name = 'index.html'
     context_object_name = 'post'
-    ordering = ['-date_created']
+    ordering = ['-date_created', '-shared_on']
 
 
 def like_post(request):
@@ -187,3 +188,30 @@ def user_post(request):
     }
     return render(request, 'user_post.html', context)
 
+
+def share_post(request, pk):
+    post = Post.objects.get(id=pk)
+    # post = get_object_or_404(Post, id=pk)
+    form = SharedForm()
+
+    if request.method == 'POST':
+        original_post = Post.objects.get(id=pk)
+        form = SharedForm(request.POST)
+
+        if form.is_valid():
+            new_post = Post(shared_title=request.POST.get('title'),
+                            title=original_post.title,
+                            author=original_post.author,
+                            date_created=original_post.date_created,
+                            shared_user=request.user,
+                            shared_on=timezone.now())
+            new_post.save()
+            for img in original_post.image.all():
+                new_post.image.add(img)
+            new_post.save()
+        return redirect('index')
+
+    context = {'post': post,
+               'form': form
+               }
+    return render(request, 'shared_form.html', context)

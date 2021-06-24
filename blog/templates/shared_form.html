@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div class="container mt-5">
+       <div class="card" style="width: 30rem;">
+           <div class="row">&nbsp;&nbsp;&nbsp;&nbsp;
+
+               <div>
+                   {{ form }}
+               </div>
+
+               <div>
+                   <img style="height: 60px; width: 60px;" class="rounded-circle" src="{{ post.author.profile.image.url }}" alt="image not found ">
+               </div>&nbsp;
+               <div>
+                   <h4 class="card-text">{{ post.author }}</h4>
+                   <p>{{ post.date_created|date:"F d, Y" }}</p>
+               </div>
+           </div>
+           <hr>
+                <div class="card-body">
+                   <h2><a class="card-text">{{ post.title }}</a></h2>
+                </div>
+                <img src="{{ post.image.url }}" class="card-img-top" alt="image not found">
+       </div>
+
+</div>
+<h1>share post</h1>
+
+{% endblock %}

@@ -30,5 +30,6 @@ class CommentForm(forms.ModelForm):
         fields = ['body']
 
 
-
+class SharedForm(forms.Form):
+    title = forms.CharField(label='', widget=forms.Textarea(attrs={'rows':'3', 'placeholder': 'Say something'}))
 
