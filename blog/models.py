@@ -6,11 +6,17 @@ from django.urls import reverse
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
+    shared_title = models.CharField(max_length=100, blank=True, null=True)
     content = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
+    shared_on = models.DateTimeField(blank=True, null=True)
     image = models.ImageField(upload_to='image', null=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    shared_user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name='+')
     liked = models.ManyToManyField(User, default=None, blank=True, related_name='liked')
+
+    class Meta:
+        ordering = ['-date_created', '-shared_on']
 
     def __str__(self):
         return self.title

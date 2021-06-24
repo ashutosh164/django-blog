@@ -27,5 +27,6 @@ class ProfileUpdateForm(forms.ModelForm):
 
 
 
-
+class SharedForm(forms.Form):
+    title = forms.CharField(label='', widget=forms.Textarea(attrs={'rows':'3', 'placeholder': 'Say something'}))
 
