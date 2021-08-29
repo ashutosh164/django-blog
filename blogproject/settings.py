@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'crispy_forms',
     'storages',
+    'channels',
+
 ]
 
 MIDDLEWARE = [
@@ -71,6 +73,15 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'blogproject.wsgi.application'
+
+
+ASGI_APPLICATION = 'blogproject.asgi.application'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
 
 
 # Database
