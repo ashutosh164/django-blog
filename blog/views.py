@@ -170,7 +170,7 @@ def profile_list_view(request):
 class SearchUser(View):
     def get(self, request, *args, **kwargs):
         query = self.request.GET.get('query')
-        profile = Profile.objects.filter(Q(user__username=query))
+        profile = Profile.objects.filter(Q(user__username__istartswith=query))
 
         context = {'profile': profile}
 
