@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Like, Profile, Comment
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, SharedForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView,UpdateView,DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -127,7 +127,7 @@ def profile(request):
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            messages.success(request,f"Your Account has been updated!")
+            messages.success(request, f"Your Account has been updated!")
             return redirect('profile')
 
     else:
@@ -136,12 +136,12 @@ def profile(request):
         post_count = Post.objects.filter(author=request.user).count()
 
     context = {
-        'u_form':u_form,
-        'p_form':p_form,
-        'post_count':post_count
+        'u_form': u_form,
+        'p_form': p_form,
+        'post_count': post_count
     }
 
-    return render(request,'profile.html',context)
+    return render(request,'profile.html', context)
 
 
 @login_required
@@ -164,7 +164,7 @@ def profile_list_view(request):
 
     context = {'qs':qs}
 
-    return render(request,'profile_list.html',context)
+    return render(request, 'profile_list.html', context)
 
 
 class SearchUser(View):
