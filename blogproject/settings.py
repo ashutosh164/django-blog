@@ -167,8 +167,8 @@ EMAIL_USE_TLS = True
 
 
 
-EMAIL_HOST_USER = '***************'
-EMAIL_HOST_PASSWORD = '*****'
+EMAIL_HOST_USER = 'jilu7437@gmail.com'
+EMAIL_HOST_PASSWORD = 'ashu7437@'
 
 
 AWS_ACCESS_KEY_ID = '*********************'
