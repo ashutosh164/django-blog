@@ -18,6 +18,7 @@ class PostListView(ListView):
     template_name = 'index.html'
     context_object_name = 'post'
     ordering = ['-date_created', '-shared_on']
+    paginate_by = 2
 
 
 def like_post(request):
