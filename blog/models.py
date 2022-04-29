@@ -53,6 +53,7 @@ class Profile(models.Model):
     country = models.CharField(max_length=200, blank=True)
     qul = models.CharField(max_length=200, blank=True)
     mob = models.CharField(max_length=10, blank=True)
+    post = models.ForeignKey(Post, on_delete=models.DO_NOTHING, null=True, blank=True)
 
     def __str__(self):
         return f"{self.user.username} "

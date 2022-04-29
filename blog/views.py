@@ -112,7 +112,10 @@ def register(request):
             message = f'Hi {user.username}, thanks you'
             email_from = settings.EMAIL_HOST_USER
             recipent_list = [user.email, ]
-            send_mail(subject, message, email_from, recipent_list)
+            try:
+                send_mail(subject, message, email_from, recipent_list)
+            except:
+                return messages.info(request, 'Email send failed')
             return redirect('login')
 
     else:
@@ -180,7 +183,7 @@ class SearchUser(View):
 
 def profile_detail(request, pk):
     profile = get_object_or_404(Profile, id=pk)
-    return render(request, 'profile_detail.html', {'profile':profile})
+    return render(request, 'profile_detail.html', {'profile': profile})
 
 
 def user_post(request):
