@@ -18,7 +18,7 @@ class PostListView(ListView):
     template_name = 'index.html'
     context_object_name = 'post'
     ordering = ['-date_created', '-shared_on']
-    paginate_by = 2
+    # paginate_by = 2
 
 
 def like_post(request):
@@ -115,7 +115,7 @@ def register(request):
             try:
                 send_mail(subject, message, email_from, recipent_list)
             except:
-                return messages.info(request, 'Email send failed')
+                messages.error(request, 'Email send failed')
             return redirect('login')
 
     else:
@@ -183,7 +183,8 @@ class SearchUser(View):
 
 def profile_detail(request, pk):
     profile = get_object_or_404(Profile, id=pk)
-    return render(request, 'profile_detail.html', {'profile': profile})
+    post = Profile.objects.filter(post=profile.post)
+    return render(request, 'profile_detail.html', {'profile': profile, 'post':post})
 
 
 def user_post(request):

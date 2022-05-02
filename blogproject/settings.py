@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
     'crispy_forms',
-    # 'storages',
+    'storages',
     # 'channels',
 
 ]
@@ -172,20 +172,19 @@ EMAIL_USE_TLS = True
 # EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 
 
-
-
 EMAIL_HOST_USER = 'jilu7437@gmail.com'
 EMAIL_HOST_PASSWORD = 'ashu7437@'
 
 
-AWS_ACCESS_KEY_ID = '*********************'
-AWS_SECRET_ACCESS_KEY = '************************'
-AWS_STORAGE_BUCKET_NAME = '***********'
+AWS_QUERYSTRING_AUTH = False
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#
+AWS_ACCESS_KEY_ID = 'AKIA4PJ4JNEXUZYBKVEG'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'ashu-blog'
 
-
-# AWS_ACCESS_KEY_ID = 'AKIA4PJ4JNEXTEVSWU6F'
-# AWS_SECRET_ACCESS_KEY = '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'
-# AWS_STORAGE_BUCKET_NAME = 'nasaphoto'
+#
 # AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 # AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
 # AWS_DEFAULT_ACL = 'public-read'
@@ -193,16 +192,9 @@ AWS_STORAGE_BUCKET_NAME = '***********'
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, 'static'),
 # ]
-
+#
 # STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-
-# AWS_S3_FILE_OVERWRITE = False
-# AWS_DEFAULT_ACL = None
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 
