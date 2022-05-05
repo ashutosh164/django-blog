@@ -1,12 +1,3 @@
-.idea
-image
-profile
-manage.py
-default.jpg
-migrations
-*.cpython
-<<<<<<< HEAD
-*__pycache__
-=======
-*.__pycache__
->>>>>>> test
+
+
+__pycache__
