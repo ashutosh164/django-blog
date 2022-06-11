@@ -54,9 +54,17 @@ class Profile(models.Model):
     qul = models.CharField(max_length=200, blank=True)
     mob = models.CharField(max_length=10, blank=True)
     post = models.ForeignKey(Post, on_delete=models.DO_NOTHING, null=True, blank=True)
+    following = models.ManyToManyField(User, related_name='following', blank=True)
 
     def __str__(self):
         return f"{self.user.username} "
+
+    @property
+    def follower_count(self):
+        return self.following.all().count()
+
+    # class Meta:
+    #     ordering = ('-created',)
 
     # RESIZE THE IMAGE
     # def save(self,*args,**kwargs):

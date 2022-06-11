@@ -156,7 +156,7 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -183,7 +183,7 @@ EMAIL_HOST_PASSWORD = 'ashu7437@'
 
 
 AWS_QUERYSTRING_AUTH = False
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 #
 AWS_ACCESS_KEY_ID = 'AKIA4PJ4JNEXUZYBKVEG'
@@ -191,15 +191,15 @@ AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'ashu-blog'
 
 #
-# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-# AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
-# AWS_DEFAULT_ACL = 'public-read'
-# AWS_LOCATION = 'static'
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static'),
-# ]
-#
-# STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+AWS_DEFAULT_ACL = 'public-read'
+AWS_LOCATION = 'static'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
 # SITE_ID = 2
 # LOGIN_REDIRECT_PROVIDERS = '/'
