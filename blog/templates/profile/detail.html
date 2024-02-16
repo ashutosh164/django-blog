@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% block title %}Detail{% endblock %}
+{% block content %}
+
+{% if empty %}
+<h1>No profile details available for this user</h1>
+{% endif %}
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+
+<!--Model-->
+
+<div class="ui basic modal">
+  <div class="ui icon header">
+    <i class="user plus icon"></i>
+    Are you sure you want to follow {{ object }}
+  </div>
+  <div class="content">
+    <p>By Clicking you will see all the posts published by {{ object }}</p>
+  </div>
+  <div class="actions">
+    <div class="ui red basic cancel inverted button">
+      <i class="remove icon"></i>
+      No
+    </div>
+      <form action="" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="profile_pk"  value="{{profile.pk}}">
+          <div class="ui green ok inverted button">
+              <i class="checkmark icon"></i>
+              Yes
+            </div>
+          <button type="submit" class="ui green ok massive button"><i class="checkmark icon"></i>Yes</button>
+      </form>
+
+  </div>
+</div>
+
+<!--Bootstrap modal-->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            <h5>Are you sure you want to follow {{ object }}!</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="ui red ok inverted button" data-bs-dismiss="modal">Close</button>
+        <form action="{% url 'profiles:follow_unfollow_view' %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="profile_pk"  value="{{profile.pk}}">
+              <button type="submit" class="ui green ok inverted button">Yes</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="ui grid">
+    <div class="row ">
+        <div class="four wide column">
+            {{ profile }}
+            <hr>
+            {% if follow %}
+                <form action="{% url 'profiles:follow_unfollow_view' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="profile_pk" id="" value="{{profile.pk}}">
+                    <button type="submit" class="ui negative button">Unfollow</button>
+                </form>
+            {% else %}
+<!--                <button id="follow-btn" class="ui positive button">Follow</button>-->
+                <button type="button" class="ui positive button" data-bs-toggle="modal" data-bs-target="#exampleModal">Follow</button>
+            {% endif %}
+        </div>
+        <div class="twelve wide column">
+            {% for post in object.profile_post %}
+                <div class="ui segment">
+                    {{post.body}}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+
+
+{% block script %}
+
+<script>
+
+$(document).ready(function(){
+    $('#follow-btn').click(function(){
+        $('.ui.modal')
+        .modal('show')
+    ;
+    })
+
+})
+
+</script>
+
+
+{% endblock %}

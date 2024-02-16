@@ -45,6 +45,7 @@ class Post(models.Model):
 
 
 class Profile(models.Model):
+    objects = models.Manager()
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg', upload_to='profile')
     bio = models.CharField(max_length=200,null=True, blank=True)
@@ -58,6 +59,9 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"{self.user.username} "
+
+    def profile_post(self):
+        return self.post_set.all()  # reverse relationship fetch the post data we can return by calling related name
 
     @property
     def follower_count(self):

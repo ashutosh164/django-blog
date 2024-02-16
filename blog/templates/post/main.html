@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}post{% endblock %}
+
+
+{% block content %}
+
+<h1>here is all following profiles post are apper</h1>
+
+<div class="ui grid">
+
+    <div class="row ">
+        <div class="four wide column">
+            <div class="ui segment">
+                <h1>{{profile}}</h1>
+                <br>
+                <a href="{% url 'profiles:profile_list' %}">
+                <button class="ui primary button">People to follow</button></a>
+                <br><br>
+                Following:
+                <ul>
+                    {% for p in profile.following.all %}
+                        <li>{{p}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="eight wide column">
+            {% for post in post %}
+                {{post.author}}
+                <div class="ui segment">{{post}}</div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}

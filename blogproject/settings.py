@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'crispy_forms',
     'storages',
+    'follow',
     # 'channels',
 
     # 'allauth',

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Follow{% endblock %}
+
+
+{% block content %}
+
+{% for profile in profiles %}
+
+    <div class="ui segment">
+        {{ profile }}
+        {{ profile.follower_count }}
+        <br>
+        <a href="{% url 'profiles:profile_detail' profile.pk %}">
+            <button class="btn-primary">See Profile</button>
+        </a>
+
+    </div>
+{% endfor %}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
