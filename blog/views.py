@@ -238,16 +238,16 @@ def posts_of_following_profile(request):
     for u in users:
         p = Profile.objects.get(user=u)
         # p = Profile.objects.filter(user=u)
-        p_post = p.post_set.all()
+        p_post = p.post
         posts.append(p_post)
     # our post
     my_post = profile.profile_post()
     posts.append(my_post)
     # sort and chain queryset and unpack the posts list
-    if len(posts) > 0:
-        qs = sorted(chain(*posts), reverse=True, key=lambda i: i.created)
+    # if len(posts) > 0:
+    #     qs = sorted(chain(*posts), reverse=True, key=lambda i: i.created)
 
-    return render(request, 'post/main.html', {'post': qs, 'profile': profile})
+    return render(request, 'post/main.html', {'post': posts, 'profile': profile})
 
 
 

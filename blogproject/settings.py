@@ -23,10 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'u_arr)hi=&&w2w)a0^x%e*87c%fuoqv#78+c6n4==p8v36p2kv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
+ALLOWED_HOSTS = []
 
-ALLOWED_HOSTS = ['ashu-social.herokuapp.com', '127.0.0.1']
+# ALLOWED_HOSTS = ['ashu-social.herokuapp.com', '127.0.0.1']
 
 
 # Application definition

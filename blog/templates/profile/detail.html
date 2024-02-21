@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
-{% block title %}Detail{% endblock %}
-{% block content %}
+{% load crispy_forms_tags %}
+{% block body %}
 
 {% if empty %}
 <h1>No profile details available for this user</h1>

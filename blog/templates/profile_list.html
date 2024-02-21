@@ -9,7 +9,7 @@
             </div>
             <div class="thirteen wide column">
                 <h3>Name: {{ item.first_name }} {{ item.last_name }}</h3>
-                <p>User: {{ item.user }}</p>
+                <p>User: <a href="{% url 'profile_detail' item.id %}">{{ item.user }}</a></p>
                 <p>Email: {{ item.user.email }}</p>
                 <p>Country: {{ item.country }}</p>
                 <p>Mob: {{ item.mob }}</p>

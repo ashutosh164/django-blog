@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
-{% block title %}post{% endblock %}
-
-
-{% block content %}
+{% load crispy_forms_tags %}
+{% block body %}
 
 <h1>here is all following profiles post are apper</h1>
 
@@ -13,7 +11,7 @@
             <div class="ui segment">
                 <h1>{{profile}}</h1>
                 <br>
-                <a href="{% url 'profiles:profile_list' %}">
+                <a href="{% url 'profiles_list' %}">
                 <button class="ui primary button">People to follow</button></a>
                 <br><br>
                 Following:
