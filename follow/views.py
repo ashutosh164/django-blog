@@ -36,10 +36,12 @@ class ProfileDetailView(DetailView):
     model = Profile
     template_name = 'profile/detail.html'
 
-    def get_object(self, **kwargs):
-        pk = self.kwargs.get('pk')
-        view_profile = Profile.objects.get(pk=pk)
-        return view_profile
+    # def get_object(self, **kwargs):
+    #     pk = self.kwargs.get('pk')
+    #     print(pk)
+    #     view_profile = Profile.objects.get(pk=pk)
+    #     print(view_profile)
+    #     return view_profile
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
