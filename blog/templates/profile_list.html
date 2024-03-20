@@ -8,6 +8,7 @@
                 <img style="height:100px" class="rounded-circle" src="{{ item.image.url }}" alt="Image not found">
             </div>
             <div class="thirteen wide column">
+                {{item.follower_count }}
                 <h3>Name: {{ item.first_name }} {{ item.last_name }}</h3>
                 <p>User: <a href="{% url 'profile_detail' item.id %}">{{ item.user }} {{item.id}}</a></p>
                 <p>Email: {{ item.user.email }}</p>

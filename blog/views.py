@@ -166,7 +166,7 @@ def post_comment(request):
 def profile_list_view(request):
     user = request.user
     qs = Profile.objects.all().exclude(user=user)
-
+    print(qs)
     context = {'qs':qs}
 
     return render(request, 'profile_list.html', context)
