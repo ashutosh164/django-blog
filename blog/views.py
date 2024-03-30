@@ -225,6 +225,7 @@ def share_post(request, pk):
     return render(request, 'shared_form.html', context)
 
 
+@login_required
 def posts_of_following_profile(request):
     # get logged user profile
     profile = Profile.objects.get(user=request.user)
