@@ -1,117 +1,339 @@
 {% extends 'base.html' %}
 {% block body %}
+
+
+<div class="max-w-full mx-auto">
+
+   <div class="mt-5 md:col-span-2 md:mt-0">
+      <div class="sm:rounded-md">
+         <div>
+            <div class="max-w-3xl mx-auto grid grid-cols-1 gap-5 lg:max-w-full lg:grid-flow-col-dense lg:grid-cols-3">
+
+               <div class="bg-white lg:col-start-1 shadow rounded-lg">
+                  <div class="px-4 py-4 sm:px-6 border-b border-gray-200">
+                     <h3 id="blog-information" class="text-lg leading-6 font-medium text-gray-700">
+                        Prifile sections
+                     </h3>
+                  </div>
+                  <div class="bg-white px-4 py-4 rounded-lg sm:px-6">
+                    
+                  </div>
+               </div>
+               
+               <div class="space-y-5  lg:col-span-2">
+                  <div class="bg-white shadow rounded-lg">
+                     <div class="px-4 py-4 sm:px-6 border-b border-gray-200">
+                
+                        <div class="flex flex-1">
+                           <button type="button" class="relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                              <span class="absolute -inset-1.5"></span>
+                              <span class="sr-only">Open user menu</span>
+                              <img class="h-12 w-full rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
+                            </button>
+                           <div class="w-full ml-3">
+                             <label for="search" class="sr-only">Search</label>
+               
+                               <input name="category_query" class="w-full h-12 ks-input rounded-pill border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm ui-autocomplete-input" role="presentation" autocomplete="off" placeholder="Start a post, try writing with AI">
+                           </div>
+                         </div>
+                     </div>
+                     <div class="bg-white px-4 py-4 rounded-lg sm:px-6">
+                        
+                     </div>
+                  </div>
+                     {% for post in post %}
+                        <section aria-labelledby="blog-info-section">
+                           <div class="bg-white shadow rounded-lg">
+
+                              <div class="bg-white px-4 py-4 rounded-lg sm:px-6">
+                                 <div>
+                                    <div class="row">
+                                       &nbsp;&nbsp;&nbsp;&nbsp;
+                                       <div>
+                                          <img style="height: 60px; width: 60px;" class="rounded-circle" src="{{ post.author.profile.image.url }}"
+                                             alt="image not found ">
+                                       </div>
+                                       &nbsp;
+                                       <div>
+                                          <h4 class="card-text">{{ post.author }}</h4>
+                                          <p>{{ post.date_created|date:"F d, Y" }}</p>
+                                       </div>
+                                    </div>
+                                    <hr>
+                                    <div class="card-body">
+                                       <h2><a class="card-text" href="{% url 'detail' post.id %}">{{ post.title }}</a></h2>
+                                       <!--                   <p class="card-text">{{ post.content }}</p>-->
+                                    </div>
+                                    <img src="{{ post.image.url }}" class="card-img-top" alt="image not found">
+                                    <br>
+                                    <div>
+                                       <div>
+                                          <ul role="list" class="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
+                                             <li class="col-span-1 flex">
+                                                <svg aria-label="Like" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                                                   <title>Like</title>
+                                                   <path
+                                                      d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 0 1 3.679-1.938m0-2a6.04 6.04 0 0 0-4.797 2.127 6.052 6.052 0 0 0-4.787-2.127A6.985 6.985 0 0 0 .5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 0 0 3.518 3.018 2 2 0 0 0 2.174 0 45.263 45.263 0 0 0 3.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 0 0-6.708-7.218Z">
+                                                   </path>
+                                                </svg>
+                                                <svg aria-label="Unlike" fill="currentColor" height="24" role="img" viewBox="0 0 48 48" width="24">
+                                                   <title>Unlike</title>
+                                                   <path
+                                                      d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z">
+                                                   </path>
+                                                </svg>
+                                             </li>
+                                             <li class="col-span-1 flex">
+                                                <svg aria-label="Comment" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                                                   <title>Comment</title>
+                                                   <path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none" stroke="currentColor"
+                                                      stroke-linejoin="round" stroke-width="2"></path>
+                                                </svg>
+                                             </li>
+                                             <li class="col-span-1 flex">
+                                                <svg aria-label="Share Post" fill="currentColor" height="24" role="img" viewBox="0 0 24 24"
+                                                   width="24">
+                                                   <title>Share Post</title>
+                                                   <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218"
+                                                      y1="3" y2="10.083"></line>
+                                                   <polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334"
+                                                      stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon>
+                                                </svg>
+                                             </li>
+                                             <li class="col-span-1 flex">
+                                                <svg aria-label="Share Post" fill="currentColor" height="24" role="img" viewBox="0 0 24 24"
+                                                   width="24">
+                                                   <title>Share Post</title>
+                                                   <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218"
+                                                      y1="3" y2="10.083"></line>
+                                                   <polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334"
+                                                      stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon>
+                                                </svg>
+                                             </li>
+                                          </ul>
+                                       </div>
+                                       <form action="{% url 'like' %}" method="POST">
+                                          {% csrf_token %}
+                                          {% if user.is_authenticated %}
+                                          <input type="hidden" name="post_id" value="{{ post.id }}">
+                                          {% if user not in post.liked.all %}
+                                          <button class="btn btn-primary" type="submit">Like</button>
+                                          {% else %}
+                                          <button class="btn btn-danger" type="submit">Unlike</button>
+                                          {% endif %}
+                                          <strong>{{ post.liked.all.count }} likes</strong>
+                                          {% else %}
+                                          <strong>{{ post.liked.all.count }} likes</strong>
+                                          {% endif %}
+                                       </form>
+                                       <br>
+                                       <div>
+                                          {% if user.is_authenticated %}
+                                          <form action="{% url 'comment' %}" method="POST">
+                                             {% csrf_token %}
+                                             <input type="text" name="body" placeholder="Enter comment">
+                                             <input type="hidden" name="post_id" value="{{ post.id }}">
+                                             <input type="submit" value="Submit">&nbsp;
+                                          </form>
+                                          <strong>{{post.num_comments}} comments</strong>
+                                          {% else %}
+                                          <strong>{{post.num_comments}} comments</strong>
+                                          {% endif %}
+                                       </div>
+                                       <div>
+                                          <a href="{% url 'shared_post' post.id %}">Share</a>
+                                       </div>
+                                    </div>
+                                 </div>
+
+                              </div>
+                           </div>
+
+
+                        
+                        </section>
+                     {% endfor %}
+               </div>
+
+               <section aria-labelledby="product-media-section">
+                  <div class="bg-white shadow rounded-lg">
+                     <div class="px-4 py-4 sm:px-6 border-b border-gray-200">
+                        <h3 id="blog-information" class="text-lg leading-6 font-medium text-gray-700">
+                           user suggestions
+                        </h3>
+                     </div>
+                     <div class="bg-white px-4 py-4 rounded-lg sm:px-6">
+                        <div>
+                           <div class="relative mt-2">
+                              <button type="button"
+                                 class="dropdown relative w-full rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500 sm:text-sm sm:leading-6 cursor-pointer"
+                                 aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
+                                 <span class="block truncate statusView"> Draft </span>
+                                 <input type="text" name="" class="hidden status" value=" Draft ">
+                                 <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                       xmlns="http://www.w3.org/2000/svg">
+                                       <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"
+                                          stroke-width="2"></path>
+                                    </svg>
+                                 </span>
+                              </button>
+
+                              <ul class="absolute dropdownMenu  hidden z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-teal-700 ring-opacity-5 focus:outline-none sm:text-sm"
+                                 tabindex="-1" role="listbox" aria-labelledby="listbox-label"
+                                 aria-activedescendant="listbox-option-3">
+                                 <li class="text-gray-900  relative select-none py-2 pl-4 pr-4 hover:bg-teal-600 hover:text-white cursor-pointer"
+                                    id="listbox-option-0" role="option">
+                                    <span data-status="Draft"
+                                       class="font-normal block truncate dropdown statusList">Draft</span>
+                                    <span class="text-teal-700 absolute inset-y-0 right-0 flex items-center pr-1.5">
+                                    </span>
+                                 </li>
+                                 <li class="text-gray-900  relative cursor-pointer select-none py-2 pl-4 pr-4 hover:bg-teal-600 hover:text-white"
+                                    id="listbox-option-0" role="option">
+                                    <span data-status="Publish"
+                                       class="font-normal block truncate dropdown statusList">Publish</span>
+                                    <span class="text-teal-700 absolute inset-y-0 right-0 flex items-center pr-1.5">
+                                    </span>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <section aria-labelledby="range-media-section">
+                     <div class="bg-white shadow rounded-lg mt-5">
+                        <div class="px-4 py-4 sm:px-6 border-b border-gray-200 items-center flex justify-between">
+                           <div id="media-information" class="text-lg leading-6 font-medium text-gray-700">Media</div>
+                           <div class="sideMenu  hidden ">
+                              <div class="relative z-0 inline-flex shadow-sm rounded-md ">
+                                 <button type="button"
+                                    class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500">Edit</button>
+                                 <div class="-ml-px relative block">
+                                    <button type="button" aria-haspopup="menu" aria-expanded="false"
+                                       class=" dropdown relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500">
+                                       <span class="sr-only">Open options</span>
+                                       <svg xmlns="http://www.w3.org/2000/svg"
+                                          xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                                          class="icon h-5 w-5" width="1em" height="1em" viewBox="0 0 20 20">
+                                          <path fill="currentColor" fill-rule="evenodd"
+                                             d="M5.293 7.293a1 1 0 0 1 1.414 0L10 10.586l3.293-3.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 0-1.414Z"
+                                             clip-rule="evenodd"></path>
+                                       </svg>
+                                    </button>
+                                    <div role="menu" tabindex="0"
+                                       class="hidden dropdownMenu origin-top-right absolute right-0 mt-2 -mr-1 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                       <div class="py-1" role="none">
+                                          <a class="text-gray-700 block px-4 py-2 text-sm cursor-pointer"
+                                             id="imageReplace" role="menuitem"> Replace</a>
+                                          <a class="text-gray-700 block px-4 py-2 text-sm cursor-pointer"
+                                             id="imageRemove" role="menuitem"> Remove</a>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="bg-white px-4 py-5 rounded-lg sm:px-6">
+                           <div class="mt-1" id="dropFiles">
+                              <div
+                                 class="imageContenerBgColor  max-w-full flex justify-center pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                 <div class="space-y-1 text-center">
+                                    <div id="imageContener" class="">
+                                       <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
+                                          viewBox="0 0 48 48" aria-hidden="true">
+                                          <path
+                                             d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                       </svg>
+                                       <div class="flex text-sm text-gray-600">
+                                          <label for="fileInput">
+                                             <input type="text" class="hidden" id="idInput">
+                                             <input name="image_upload" id="fileInput" type="file"
+                                                accept="image/x-png,image/gif,image/jpeg,image/jpg" class="sr-only">
+
+                                             <div class="pl-1 pr-3 pt-3 pb-3 text-gray-600">
+                                                <span
+                                                   class="place-content-center inline-grid relative cursor-pointer rounded-md font-medium text-teal-600 hover:text-teal-500 focus-within:outline-none focus-within:ring-teal-500">
+                                                   Upload</span>
+                                                or drag and drop the file here
+                                             </div>
+                                          </label>
+                                       </div>
+                                       <p class="text-xs text-gray-500"> PNG/JPG/SVG up to 10MB</p>
+                                    </div>
+                                    <div class="imagePreviewContainer rounded-lg  bg-center">
+                                       <input type="text" class="hidden imagePreviewInput" value="">
+                                       <img id="imgPreview" src="" alt="" class=" hidden  rounded-lg h-64 bg-center">
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="ks-error" id="messages"></div>
+                           </div>
+                           <div class="ks-error" id="image-size-error"></div>
+                        </div>
+                     </div>
+                  </section>
+                  <div class="bg-white shadow rounded-lg mt-5">
+                     <div class="px-4 py-4 sm:px-6 border-b border-gray-200">
+                        <h3 id="blog-information" class="text-lg leading-6 font-medium text-gray-700">
+                           Organize
+                        </h3>
+                     </div>
+                     <div class="bg-white px-4 py-4 rounded-lg sm:px-6">
+                        <label for="author_query" class="ks-label mb-2 block">Author</label>
+                        <div class="dropdown relative">
+                           <div class="relative mt-2 rounded-md shadow-sm ">
+                              <input type="text" class="hidden" id="author_input" value=" 6 ">
+                              <input id="author_query" value="Ashutosh pradhan " name="author_query"
+                                 class="cursor-pointer w-full ks-input rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm ui-autocomplete-input"
+                                 role="presentation" autocomplete="off" placeholder="Search and select author">
+                              <div
+                                 class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 removeUser">
+                                 <!-- <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 " viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m4.5 19.5l15-15m-15 0l15 15"/></svg> -->
+                                 <!-- <svg   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="icon h-4 w-4 removeUser" width="1em" height="1em" viewBox="0 0 20 20"><path fill="currentColor" fill-rule="evenodd" d="M4.28 3.22a.75.75 0 0 0-1.06 1.06L8.94 10l-5.72 5.72a.75.75 0 1 0 1.06 1.06L10 11.06l5.72 5.72a.75.75 0 1 0 1.06-1.06L11.06 10l5.72-5.72a.75.75 0 0 0-1.06-1.06L10 8.94L4.28 3.22Z" clip-rule="evenodd"></path></svg> -->
+                              </div>
+                           </div>
+                           <ul id="emptyAuthor" role="listbox"
+                              class="absolute dropdownMenu hidden z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-sm ">
+                              <span>
+                                 <li id="headlessui-combobox-option-18" role="option" tabindex="-1"
+                                    aria-selected="false" value="0">
+                                 </li>
+                                 <li class="text-center py-2"><span>No author found</span></li>
+                              </span>
+                           </ul>
+                        </div>
+                        <div class="ls-select mt-5">
+                           <label for="category_query" class="ks-label mb-2 block">Category</label>
+                           <div class="dropdown relative">
+                              <input type="text" class="hidden" id="category_input" value="">
+                              <input id="category_query" value="" name="category_query"
+                                 class="w-full ks-input rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:text-sm ui-autocomplete-input"
+                                 role="presentation" autocomplete="off" placeholder="Search and select category">
+                          
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="text-start mt-5">
+
+   </div>
+</div>
+
+
+
+
 <div class="container mt-5">
-    {% for post in post %}
-    <div class="card" style="width: 30rem;">
-       <div class="row">
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <div>
-             <img style="height: 60px; width: 60px;" class="rounded-circle" src="{{ post.author.profile.image.url }}" alt="image not found ">
-          </div>
-          &nbsp;
-          <div>
-             <h4 class="card-text">{{ post.author }}</h4>
-             <p>{{ post.date_created|date:"F d, Y" }}</p>
-          </div>
-       </div>
-       <hr>
-       <div class="card-body">
-          <h2><a class="card-text" href="{% url 'detail' post.id %}">{{ post.title }}</a></h2>
-          <!--                   <p class="card-text">{{ post.content }}</p>-->
-       </div>
-       <img src="{{ post.image.url }}" class="card-img-top" alt="image not found">
-       <br>
-       <div>
-          <div>
-             <ul role="list" class="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
-                <li class="col-span-1 flex">
-                   <svg aria-label="Like" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
-                      <title>Like</title>
-                      <path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 0 1 3.679-1.938m0-2a6.04 6.04 0 0 0-4.797 2.127 6.052 6.052 0 0 0-4.787-2.127A6.985 6.985 0 0 0 .5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 0 0 3.518 3.018 2 2 0 0 0 2.174 0 45.263 45.263 0 0 0 3.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 0 0-6.708-7.218Z"></path>
-                   </svg>
-                   <svg aria-label="Unlike"  fill="currentColor" height="24" role="img" viewBox="0 0 48 48" width="24">
-                      <title>Unlike</title>
-                      <path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path>
-                   </svg>
-                </li>
-                <li class="col-span-1 flex">
-                   <svg aria-label="Comment" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
-                      <title>Comment</title>
-                      <path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path>
-                   </svg>
-                </li>
-                <li class="col-span-1 flex">
-                   <svg aria-label="Share Post" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
-                      <title>Share Post</title>
-                      <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218" y1="3" y2="10.083"></line>
-                      <polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon>
-                   </svg>
-                </li>
-                <li class="col-span-1 flex">
-                   <svg aria-label="Share Post" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
-                      <title>Share Post</title>
-                      <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218" y1="3" y2="10.083"></line>
-                      <polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon>
-                   </svg>
-                </li>
-             </ul>
-          </div>
-          <form action="{% url 'like' %}" method="POST">
-             {% csrf_token %}
-             {% if user.is_authenticated %}
-                <input type="hidden" name="post_id" value="{{ post.id }}">
-                {% if user not in post.liked.all %}
-                    <button class="btn btn-primary" type="submit">Like</button>
-                {% else %}
-                    <button class="btn btn-danger" type="submit">Unlike</button>
-                {% endif %}
-                <strong>{{ post.liked.all.count }} likes</strong>
-             {% else %}
-                <strong>{{ post.liked.all.count }} likes</strong>
-             {% endif %}
-          </form>
-          <br>
-          <div>
-             {% if user.is_authenticated %}
-                <form action="{% url 'comment' %}" method="POST">
-                    {% csrf_token %}
-                    <input type="text" name="body" placeholder="Enter comment">
-                    <input type="hidden" name="post_id" value="{{ post.id }}">
-                    <input type="submit" value="Submit">&nbsp;
-                </form>
-                <strong>{{post.num_comments}} comments</strong>
-            {% else %}
-                <strong>{{post.num_comments}} comments</strong>
-             {% endif %}
-          </div>
-          <div>
-             <a href="{% url 'shared_post' post.id %}">Share</a>
-          </div>
-       </div>
-       <!--            <div class="col-6" style="text-align: right;">-->
-       <!--                      {% if is_paginated %}-->
-       <!--                        {% if page_obj.has_previous %}-->
-       <!--&lt;!&ndash;                          <a class="btn btn-outline-info mb-4" href="?page=1">First</a>&ndash;&gt;-->
-       <!--                          <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Prev</a>-->
-       <!--                        {% endif %}-->
-       <!--                        {% for num in page_obj.paginator.page_range %}-->
-       <!--                          {% if page_obj.number == num %}-->
-       <!--                            <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>-->
-       <!--                          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}-->
-       <!--                          <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>-->
-       <!--                          {% endif %}-->
-       <!--                        {% endfor %}-->
-       <!--                        {% if page_obj.has_next %}-->
-       <!--                          <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>-->
-       <!--&lt;!&ndash;                          <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>&ndash;&gt;-->
-       <!--                        {% endif %}-->
-       <!--                      ..of <p class="btn btn-outline-info mb-4">{{ page_obj.paginator.num_pages }}</p>-->
-       <!--                      {% endif %}-->
-       <!--                    </div>-->
-    </div>
-    <br>
-    {% endfor %}
- </div>
+  
+   <br>
+</div>
 
 
 {% endblock %}
