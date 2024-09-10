@@ -61,10 +61,13 @@
                                     </div>
                                     <hr>
                                     <div class="card-body">
-                                       <h2><a class="card-text" href="{% url 'detail' post.id %}">{{ post.title }}</a></h2>
-                                       <!--                   <p class="card-text">{{ post.content }}</p>-->
+                                       <!-- <h2><a class="card-text" href="{% url 'detail' post.id %}">{{ post.title }}</a></h2> -->
+                                                         <p class="card-text">{{ post.content }}</p>
+                                                         <span class="text-gray-400 hover:cursor-pointer hover:text-indigo-700">...more</span>
                                     </div>
-                                    <img src="{{ post.image.url }}" class="card-img-top" alt="image not found">
+                                    {% if post.image %}
+                                       <img src="{{ post.image.url }}" class="card-img-top" alt="image not found">
+                                    {% endif %}
                                     <br>
                                     <div>
                                        <div>
