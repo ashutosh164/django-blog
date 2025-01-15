@@ -8,10 +8,12 @@
    <body>
       {% include 'navbar.html' %}
 
+      <div class="pt-5">
+         {% block body %}
 
-      {% block body %}
+         {% endblock %}
+      </div>
 
-      {% endblock %}
 
          
       <div class="container">
